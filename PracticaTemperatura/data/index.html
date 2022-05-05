@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>UCB</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <script src="http://cdn.rawgit.com/Mikhus/canvas-gauges/gh-pages/download/2.1.7/all/gauge.min.js"></script>
+</head>
+
+<body class="w3-black">
+  <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+
+    <img src="https://cba.ucb.edu.bo/wp-content/uploads/2018/04/escudo-ucb.png" style="width:100%">
+    <a href="#" class="w3-bar-item w3-button w3-padding-large w3-black">
+      <i class="fa fa-home w3-xxlarge"></i>
+      <p>HOME</p>
+    </a>
+    <a href="#focos" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+      <i class="fa fa-user w3-xxlarge"></i>
+      <p>Temperatura</p>
+    </a>
+    <a href="#students" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+      <i class="fa fa-envelope w3-xxlarge"></i>
+      <p>ESTUDIANTES</p>
+    </a>
+  </nav>
+
+  <div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
+    <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
+      <a href="#" class="w3-bar-item w3-button" style="width:25% !important">HOME</a>
+      <a href="#focos" class="w3-bar-item w3-button" style="width:25% !important">FOCOS</a>
+      <a href="#students" class="w3-bar-item w3-button" style="width:25% !important">ESTUDIANTES</a>
+    </div>
+  </div>
+
+  <!-- Page Content -->
+  <div class="w3-padding-large" id="main">
+    <!-- Header/Home -->
+    <header class="w3-container w3-padding-32 w3-center w3-black" id="home">
+      <h1 class="w3-jumbo"><span class="w3-hide-small">LM35</h1>
+      <p>Sensor de Temperatura</p>
+      <img
+        src="https://pygmalion.tech/wp-content/uploads/2018/06/Sensor-LM35.png"
+        alt="boy" class="w3-image" width="992" height="1108">
+    </header>
+
+    <!-- About Section -->
+    <div class="w3-content w3-justify w3-text-grey w3-padding-64" id="pir">
+      <h2 class="w3-text-light-grey">Descripción y Funcionamiento</h2>
+      <hr style="width:200px" class="w3-opacity">
+      <p>
+          El LM35 es un circuito electrónico sensor que puede medir temperatura. Su salida es analógica, es decir, te proporciona 
+          un voltaje proporcional a la temperatura. El sensor tiene un rango desde −55°C a 150°C. Su popularidad se debe a la 
+          facilidad con la que se puede medir la temperatura. Incluso no es necesario de un microprocesador o microcontrolador 
+          para medir la temperatura. Dado que el sensor LM35 es analógico, basta con medir con un multímetro, el voltaje a salida 
+          del sensor.
+
+          Para convertir el voltaje a la temperatura, el LM35 proporciona 10mV por cada grado centígrado. También cabe señalar 
+          que ese sensor se puede usar sin offset, es decir que si medimos 20mV a la salida, estaremos midiendo 2°C.
+
+          Para este ejercicio se debe desarrollar un sistema para mantener la temperatura en ambiente constante.
+      </p>
+
+    </div>
+
+    <!-- Portfolio Section -->
+    <div class="w3-padding-64 w3-content w3-justify w3-text-grey " id="focos">
+      <h2 class="w3-text-light-grey">INDICADORES</h2>
+      <hr style="width:200px" class="w3-opacity">
+
+      <div class="w3-container w3-center w3-row">
+
+        <!-- Foco 1 -->
+        <p>
+        <button type="submit" value="foco1" style="border:none; background-color:transparent;">
+        <img src="https://images.vexels.com/media/users/3/213501/isolated/preview/a17749ece9ce89f2e1a558a430f66032-lavanderia-a-temperatura-del-agua.png" style="height: 90px" id="foco1"/>
+
+        <form action="/SLIDER" method="post">
+          Indique la temperatura:<br>
+          <input type="range" id="cmInput1" name="distanceInput1" min="0" max="30" value="15"
+            onchange="updateTextInput1(this.value);">
+          <input type="number" id="textInput1" onchange="updateTextInput1(this.value);" value="15" style="width:50px">
+          <label for="formCM1">Temperatura</label><br>
+          <button type="submit" value="Submit">Enviar</button>
+        </form>
+        </p>
+      </div>
+
+      <div class="w3-container w3-center w3-row">
+          <div class="card-grid"> 
+            <div class="card">
+              <p class="card-title">Dato1</p>
+              <canvas id="gauge-temperature"></canvas>
+            </div>
+            <div class="card">
+              <p class="card-title">Dato2</p>
+              <canvas id="gauge-humidity"></canvas>
+            </div>
+          </div>
+        </div>
+        <script src="script.js"></script>
+
+    </div>
+
+    <!-- Students Section -->
+    <div class="w3-padding-64 w3-content w3-text-grey" id="students">
+      <h2 class="w3-text-light-grey">Estudiantes</h2>
+      <hr style="width:200px" class="w3-opacity">
+
+      <div class="w3-section">
+        <p><i class="fa fa-envelope fa-fw w3-text-white w3-xxlarge w3-margin-right"> </i> Nombre: Avila Flores Juan
+          Carlos (juan.avila@ucb.edu.bo)</p>
+        <p><i class="fa fa-envelope fa-fw w3-text-white w3-xxlarge w3-margin-right"> </i> Nombre: Aruquipa Peralta Teddy
+          Leyder (teddy.aruquipa@ucb.edu.bo)</p>
+        <p><i class="fa fa-envelope fa-fw w3-text-white w3-xxlarge w3-margin-right"> </i> Nombre: Blanco Gomez Gutber
+          Luis (gutber.blanco@ucb.edu.bo)</p>
+      </div><br>
+    </div>
+
+    <!-- Footer -->
+    <footer class="w3-content w3-padding-64 w3-text-grey w3-xlarge">
+      <p class="w3-medium">Universidad Católica Boliviana "San Pablo" <a href="https://www.ucb.edu.bo" target="_blank"
+          class="w3-hover-text-green"></a></p>
+    </footer>
+
+  </div>
+
+</body>
+<script>
+  function updateTextInput1(val) {
+    console.log(val);
+    document.getElementById('cmInput1').value = val;
+    document.getElementById('textInput1').value = val;
+  }
+
+</script>
+
+</html>
