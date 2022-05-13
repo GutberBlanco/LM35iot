@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>UCB HORNO</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="icon" type="image/png" href="icon.png">
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <div class="w3-top">
+    <div class="w3-bar w3-white w3-card" id="myNavbar">
+      <img src="icon.png" alt="Logo" style="height: 60px;" class="w3-bar-item">
+      <a href="#home" class="w3-bar-item w3-button w3-wide">HORNO INTELIGENTE</a>
+      <!-- Right-sided navbar links -->
+      <div class="w3-right w3-hide-small">
+        <a href="#about" class="w3-bar-item w3-button"><i class="fa fa-sliders"></i> CARACTERÍSTICAS</a>
+        <a href="#project" class="w3-bar-item w3-button"><i class="fa fa-microchip"></i> HORNO</a>
+        <a href="#team" class="w3-bar-item w3-button"><i class="fa fa-users"></i> EQUIPO</a>
+        <a href="#contact" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> CONTACTO</a>
+      </div>
+      <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+
+      <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium"
+        onclick="w3_open()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- Sidebar on small screens when clicking the menu icon -->
+  <nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large"
+    style="display:none" id="mySidebar">
+    <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Cerrar ×</a>
+    <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">CARACTERÍSTICAS</a>
+    <a href="#project" onclick="w3_close()" class="w3-bar-item w3-button">HORNO</a>
+    <a href="#team" onclick="w3_close()" class="w3-bar-item w3-button">EQUIPO</a>
+    <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button">CONTACTO</a>
+  </nav>
+
+  <!-- Header with full-height image -->
+  <header class="w3-display-container w3-grayscale-min" id="home">
+    <img
+      src="https://media.product.which.co.uk/prod/images/original/gm-b0ac1c4d-12f0-440e-84b9-b46c221fffe6-smart-ovenlead.jpeg"
+      alt="boy" class="w3-image" width="100%">
+    <div class="w3-display-left w3-text-white" style="padding:48px">
+      <span class="w3-jumbo w3-hide-small">Horno Inteligente</span><br>
+      <span class="w3-xxlarge w3-hide-large w3-hide-medium">Controla cada aspecto.</span><br>
+      <span class="w3-large">Empieza a tener el control completo y controla todo desde tu celular.</span>
+      <p><a href="#about"
+          class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">Aprende más
+          sobre las características</a></p>
+    </div>
+  </header>
+
+  <!-- About Section -->
+  <div class="w3-container" style="padding:128px 16px" id="about">
+    <h3 class="w3-center">ACERCA DEL HORNO</h3>
+    <p class="w3-center w3-large">Algunas de sus características son:</p>
+    <div class="w3-row-padding w3-center" style="margin-top:64px">
+      <div class="w3-quarter">
+        <i class="fa fa-desktop w3-margin-bottom w3-jumbo w3-center"></i>
+        <p class="w3-large">Página Web</p>
+        <p>Gracias a nuestra página web puedes controlar todo desde cualquier dispositivo que cuente con conexión a la
+          red.</p>
+      </div>
+      <div class="w3-quarter">
+        <i class="fa fa-wrench w3-margin-bottom w3-jumbo"></i>
+        <p class="w3-large">Control Completo</p>
+        <p>Puedes ver en tiempo real la variación de la temperatura en cualquier lugar.</p>
+      </div>
+      <div class="w3-quarter">
+        <i class="fa fa-area-chart w3-margin-bottom w3-jumbo"></i>
+        <p class="w3-large">Customización</p>
+        <p>Desde la comodidad de tu celular puedes cambiar la temperatura a la que funciona el horno.</p>
+      </div>
+      <div class="w3-quarter">
+        <i class="fa fa-cog w3-margin-bottom w3-jumbo"></i>
+        <p class="w3-large">Soporte</p>
+        <p>Nos aseguramos de proveer el mejor soporte en el país.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project Section -->
+  <div class="w3-container w3-center w3-dark-grey" style="padding:128px 16px" id="project">
+    <h3>HORNO</h3>
+    <p class="w3-large">Datos y Gráficos</p>
+    <div class="w3-row-padding" style="margin-top:64px">
+
+      <div class="w3-half w3-section">
+        <ul class="w3-ul w3-white w3-hover-shadow">
+          <li class="w3-black w3-xlarge w3-padding-32">Datos</li>
+          <li class="w3-padding-16"><b>Hora Ingresada: </b><span id="time"></span></li>
+          <li class="w3-padding-16"><b>Fecha Actual: </b><span id="date"></span></li>
+          <li class="w3-padding-16"><b>IP: </b><span id="ip"></span></li>
+          <li class="w3-light-grey w3-padding-24">
+            <form action="/SLIDER" method="post">
+              Indique la temperatura:<br>
+              <input type="range" id="cmInput1" name="distanceInput1" min="0" max="30" value="15"
+                onchange="updateTextInput1(this.value);">
+              <input type="number" id="textInput1" onchange="updateTextInput1(this.value);" value="15"
+                style="width:50px">
+              <label for="formCM1">°C</label><br>
+              <button type="submit" class="w3-button w3-black w3-padding-large" style="margin-top: 10px;"
+                value="Submit">Enviar</button>
+            </form>
+          </li>
+        </ul>
+      </div>
+
+      <script>
+        var dt = new Date();
+        document.getElementById("time").innerHTML = dt.toLocaleTimeString();
+        document.getElementById("date").innerHTML = dt.toLocaleDateString();
+
+        var ip = location.host;
+        document.getElementById("ip").innerHTML = ip;
+      </script>
+
+      <div class="w3-half w3-section">
+        <ul class="w3-ul w3-white w3-hover-shadow">
+          <li class="w3-red w3-xlarge w3-padding-32">Gráfico</li>
+          <li class="w3-padding-16">
+            <h2 class="w3-wide"><span id="temperatureC"></span>°C</h2>
+            <span class="w3-opacity">Temperatura Actual</span>
+          </li>
+          <li class="w3-padding-16"><b>Temperatura: </b><span id="temperatureF"></span>°F</li>
+          <li class="w3-light-grey w3-padding-24">
+            <button class="w3-button w3-black w3-padding-large" style="margin: 28px;"
+              onclick="document.getElementById('modalProject').style.display='block'">Desplegar Gráfico</button>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Project Modal -->
+      <div id="modalProject" class="w3-modal">
+        <div class="w3-modal-content w3-animate-zoom">
+          <div class="w3-container w3-red">
+            <span onclick="document.getElementById('modalProject').style.display='none'"
+              class="w3-button w3-display-topright w3-large">x</span>
+            <h1>Gráfico</h1>
+          </div>
+          <div class="w3-container">
+            <p>El siguiente gráfico muestra la temperatura conforme al tiempo:</p>
+            <!-- Graph -->
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Team Section -->
+  <div class="w3-container" style="padding:128px 16px" id="team">
+    <h3 class="w3-center">Equipo</h3>
+    <p class="w3-center w3-large">Creadores y fundadores de Cubic Code</p>
+    <div class="w3-row-padding w3-center" style="margin-top:64px">
+
+      <div class="w3-col l4 m6 w3-margin-bottom">
+        <div class="w3-card">
+          <img src="https://i.pinimg.com/550x/72/df/30/72df30b8b200848e492625ef95dd2e50.jpg" alt="1" style="width:100%">
+          <div class="w3-container">
+            <h3>Aruquipa Peralta Teddy Leyder</h3>
+            <p class="w3-opacity">Programador y Fundador</p>
+            <p>teddy.aruquipa@ucb.edu.bo</p>
+            <!-- <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contacto</button></p> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="w3-col l4 m6 w3-margin-bottom">
+        <div class="w3-card">
+          <img src="https://i.pinimg.com/236x/b3/bc/1b/b3bc1baf429da3d6509431ea26768d39.jpg" alt="2" style="width:100%">
+          <div class="w3-container">
+            <h3>Avila Flores Juan Carlos</h3>
+            <p class="w3-opacity">Diseñador Web</p>
+            <p>juan.avila@ucb.edu.bo</p>
+            <!-- <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contacto</button></p> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="w3-col l4 m6 w3-margin-bottom">
+        <div class="w3-card">
+          <img src="https://i.pinimg.com/236x/35/f6/71/35f6716adc65383508eca7cfda5b5594.jpg" alt="3" style="width:100%">
+          <div class="w3-container">
+            <h3>Blanco Gomez Gutber Luis</h3>
+            <p class="w3-opacity">Encargado de los Servidores</p>
+            <p>gutber.blanco@ucb.edu.bo</p>
+            <!-- <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contacto</button></p> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Promo Section "Statistics" -->
+  <div class="w3-container w3-row w3-center w3-dark-grey w3-padding-64">
+    <div class="w3-quarter">
+      <span class="w3-xxlarge">14+</span>
+      <br>Patentes
+    </div>
+    <div class="w3-quarter">
+      <span class="w3-xxlarge">55+</span>
+      <br>Proyectos Funcionales
+    </div>
+    <div class="w3-quarter">
+      <span class="w3-xxlarge">89+</span>
+      <br>Clientes Satisfechos
+    </div>
+    <div class="w3-quarter">
+      <span class="w3-xxlarge">150+</span>
+      <br>Empleados
+    </div>
+  </div>
+
+  <!-- Contact Section -->
+  <div class="w3-container w3-light-grey" style="padding:128px 16px" id="contact">
+    <h3 class="w3-center">CONTACTO</h3>
+    <p class="w3-center w3-large">Contáctanos para que realicemos la cotización de tu proyecto</p>
+    <div style="margin-top:48px">
+      <div class="w3-col m6 w3-center">
+        <img src="logo.png" class="w3-image" style="width:180px;">
+      </div>
+
+      <div class="w3-col m6 w3-left">
+        <p><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i> La Paz, BO</p>
+        <p><i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i> Teléfono: +591 68856552</p>
+        <p><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"> </i> Correo: cubicode@gmail.com</p>
+        <br>
+      </div>
+
+      <form action="/action_page.php" target="_blank" style="margin-left: 20%; margin-right: 20%;">
+        <p><input class="w3-input w3-border" type="text" placeholder="Nombre" required name="Nombre"></p>
+        <p><input class="w3-input w3-border" type="text" placeholder="Correo" required name="Correo"></p>
+        <p><input class="w3-input w3-border" type="text" placeholder="Proyecto" required name="Proyecto"></p>
+        <p><input class="w3-input w3-border" type="text" placeholder="Mensaje" required name="Mensaje"></p>
+        <p>
+          <button class="w3-button w3-black" type="submit">
+            <i class="fa fa-paper-plane"></i> Enviar Mensaje
+          </button>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="w3-center w3-black w3-padding-64">
+    <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>Volver Arriba</a>
+    <img src="https://tja.ucb.edu.bo/wp-content/uploads/2020/09/cropped-logo-UCB.png?w=640" class="w3-image"
+      style="width:8%;margin-left:45%;margin-right:45%;margin-top: 20px;">
+    <p>Realizado en <a href="https://www.ucb.edu.bo" title="UCB" target="_blank" class="w3-hover-text-blue">Universidad
+        Católica Boliviana "San Pablo"</a></p>
+  </footer>
+
+  <script>
+    // Modal Image Gallery
+    function onClick(element) {
+      document.getElementById("img01").src = element.src;
+      document.getElementById("modal01").style.display = "block";
+      var captionText = document.getElementById("caption");
+      captionText.innerHTML = element.alt;
+    }
+
+
+    // Toggle between showing and hiding the sidebar when clicking the menu icon
+    var mySidebar = document.getElementById("mySidebar");
+
+    function w3_open() {
+      if (mySidebar.style.display === 'block') {
+        mySidebar.style.display = 'none';
+      } else {
+        mySidebar.style.display = 'block';
+      }
+    }
+
+    // Close the sidebar with the close button
+    function w3_close() {
+      mySidebar.style.display = "none";
+    }
+
+    // CHange input for slider
+    function updateTextInput1(val) {
+      console.log(val);
+      document.getElementById('cmInput1').value = val;
+      document.getElementById('textInput1').value = val;
+    }
+  </script>
+
+</body>
+
+</html>
