@@ -6,6 +6,8 @@
 #include <Arduino_JSON.h>
 #include "config.h"
 
+const int ledPin=2;
+String slider;
 // Creamos el servidor AsyncWebServer en el puerto 80
 AsyncWebServer server(80);
 
@@ -16,8 +18,6 @@ AsyncEventSource events("/events");
 JSONVar readings;
 
 // Timer variables
-
-String slider;
 unsigned long lastTime = 0;  
 unsigned long timerDelay = 1000; // actualizacion cada segundo//30000;
 
@@ -25,10 +25,24 @@ unsigned long timerDelay = 1000; // actualizacion cada segundo//30000;
 // Get Sensor Readings and return JSON object
 String getSensorReadings(){
 
-  readings["temperature"] = String(analogRead(A0)*0.3225806352);
-  readings["humidity"] =  String(analogRead(A0)*0.3225806352);
+  readings["temperature"] = String(analogRead(A0)*0.488758553275);
+  readings["humidity"] =  String((analogRead(A0)*0.488758553275)/10);
   String jsonString = JSON.stringify(readings);
+  statusfoco(slider.toInt(), analogRead(A0)*0.488758553275);
   return jsonString;
+}
+void statusfoco(int nslide, float temp){
+  if(nslide<temp){
+    digitalWrite(ledPin, LOW);
+    Serial.println("S332");
+    Serial.println(nslide);
+    Serial.println(temp);
+  }else{
+    digitalWrite(ledPin, HIGH);
+    Serial.println("S442");
+    Serial.println(nslide);
+    Serial.println(temp);
+  }  
 }
 
 // Initialize LittleFS
@@ -59,6 +73,7 @@ void initWiFi() {
 void setup() {
   Serial.begin(115200);
 
+  pinMode(ledPin, OUTPUT);
   initWiFi();
   initFS();
 
@@ -68,17 +83,6 @@ void setup() {
   });
 
   server.serveStatic("/", SPIFFS, "/");
-
-  // Ruta para cargar el archivo index.html
-  server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
-            request->send(SPIFFS, "/index.html", String(), false, processor);
-            });
-            
-  // Ruta para cargar el archivo style.css
-  server.on("/style.css", HTTP_GET, [](AsyncWebServerRequest *request){
-            request->send(SPIFFS, "/style.css", "text/css");
-            });
-
   
   // Request for the latest sensor readings
   server.on("/readings", HTTP_GET, [](AsyncWebServerRequest *request){
@@ -86,10 +90,8 @@ void setup() {
     request->send(200, "application/json", json);
     json = String();
   });
-
-
   server.on("/SLIDER", HTTP_POST, [](AsyncWebServerRequest *request){
-            slider = request->arg("temperatura");
+            slider = request->arg("distanceInput1");
             Serial.print("Temperatura: \t");
             Serial.println(slider);
             request->redirect("/");
