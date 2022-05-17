@@ -129,10 +129,10 @@
         <ul class="w3-ul w3-white w3-hover-shadow">
           <li class="w3-red w3-xlarge w3-padding-32">Gráfico</li>
           <li class="w3-padding-16">
-            <h2 class="w3-wide"><span id="temperatureC"></span>°C</h2>
+            <h2 class="w3-wide" id="temperatureC"><span ></span>°C</h2>
             <span class="w3-opacity">Temperatura Actual</span>
           </li>
-          <li class="w3-padding-16"><b>Temperatura: </b><span id="temperatureF"></span>°F</li>
+          <li class="w3-padding-16"><b id="temperatureF">Temperatura: </b><span ></span>°F</li>
           <li class="w3-light-grey w3-padding-24">
             <button class="w3-button w3-black w3-padding-large" style="margin: 28px;"
               onclick="document.getElementById('modalProject').style.display='block'">Desplegar Gráfico</button>
@@ -294,6 +294,26 @@
       document.getElementById('cmInput1').value = val;
       document.getElementById('textInput1').value = val;
     }
+    setInterval(function(){
+      var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+          if (this.readyState == 4 && this.status == 200) {
+            var x = (new Date()).getTime(),
+              y = parseFloat(this.responseText);
+              console.log("s" + y)
+            let inte = document.getElementById("radar");
+            console.log("s" + y)
+            //console.log(this.responseText);
+            document.getElementById('temperatureC').textContent = y + "°C"; 
+            var yf = (y/0.488758553275)*0.3225806352;
+            document.getElementById('temperatureF').textContent = parseInt(yf); 
+          }
+        };
+        xhttp.open("GET", "/ADC", true);
+        xhttp.send();
+    }, 1000);
+    
+      
   </script>
 
 </body>

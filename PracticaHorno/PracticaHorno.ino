@@ -1,4 +1,4 @@
-#include <Arduino.h>
+ #include <Arduino.h>
 #include <ESP8266WiFi.h>
 #include <ESPAsyncTCP.h>
 #include <ESPAsyncWebServer.h>
@@ -6,6 +6,7 @@
 #include <Arduino_JSON.h>
 #include "config.h"
 
+boolean flag_mode=true;
 const int ledPin=2;
 String slider;
 // Creamos el servidor AsyncWebServer en el puerto 80
@@ -89,6 +90,13 @@ void setup() {
     String json = getSensorReadings();
     request->send(200, "application/json", json);
     json = String();
+  });
+  server.on("/ADC", HTTP_GET, [](AsyncWebServerRequest *request){
+    char snum[5];
+    itoa(analogRead(A0)*0.488758553275, snum, 10);
+    
+    if(flag_mode){request->send_P(200, "text/plain", snum);}
+  Serial.println(getSensorReadings());
   });
   server.on("/SLIDER", HTTP_POST, [](AsyncWebServerRequest *request){
             slider = request->arg("distanceInput1");
